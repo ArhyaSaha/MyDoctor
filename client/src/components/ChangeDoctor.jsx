@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { DoctorContext } from "../context/DoctorContextProvider";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const ChangeDoctor = () => {
@@ -12,7 +13,7 @@ const ChangeDoctor = () => {
     useEffect(() => {
         async function fetchDoctors() {
             try {
-                const response = await axios.get("http://localhost:5000/api/doctors/all");
+                const response = await axios.get(`${API_BASE_URL}/api/doctors/all`);
                 setDoctors(response.data);
             } catch (error) {
                 console.error("Error fetching doctors:", error);

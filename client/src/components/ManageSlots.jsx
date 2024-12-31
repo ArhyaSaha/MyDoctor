@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { DoctorContext } from "../context/DoctorContextProvider";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ManageSlots = () => {
     const [weekdayStart, setWeekdayStart] = useState("09:00");
@@ -57,7 +58,7 @@ const ManageSlots = () => {
             };
 
             // Update slots in the database
-            const response = await axios.put(`http://localhost:5000/api/doctors/${doctorId}/slots`, payload);
+            const response = await axios.put(`${API_BASE_URL}/api/doctors/${doctorId}/slots`, payload);
             alert("Slots updated successfully!");
             console.log(response.data);
         } catch (error) {

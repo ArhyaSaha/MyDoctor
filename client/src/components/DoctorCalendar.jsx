@@ -7,6 +7,7 @@ import { DoctorContext } from '../context/DoctorContextProvider';
 import axios from 'axios';
 import ManageAppointmentModal from './ManageAppointmentModal';
 import moment from 'moment-timezone';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const DoctorCalendar = () => {
@@ -19,7 +20,7 @@ const DoctorCalendar = () => {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/appointments/doctor/${doctorId}`);
+                const response = await axios.get(`${API_BASE_URL}/api/appointments/doctor/${doctorId}`);
                 const appointments = response.data;
 
                 // Format the data for FullCalendar

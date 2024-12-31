@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { DoctorContext } from '../context/DoctorContextProvider';
 import axios from 'axios';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const ManageAppointmentModal = () => {
@@ -12,7 +13,7 @@ const ManageAppointmentModal = () => {
             if (!selectedEvent) return;
 
             const appointmentId = selectedEvent.id; // Assuming the event ID matches the appointment ID
-            const url = `http://localhost:5000/api/appointments/update/${appointmentId}`;
+            const url = `${API_BASE_URL}/api/appointments/update/${appointmentId}`;
             const payload = {
                 status: 'Cancelled',
             };
@@ -73,7 +74,7 @@ const ManageAppointmentModal = () => {
 
 
             const appointmentId = selectedEvent.id; // Assuming the event ID matches the appointment ID
-            const url = `http://localhost:5000/api/appointments/update/${appointmentId}`;
+            const url = `${API_BASE_URL}/api/appointments/update/${appointmentId}`;
 
 
             const response = await axios.put(url, payload);

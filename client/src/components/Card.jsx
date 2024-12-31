@@ -3,6 +3,7 @@ import { MdCallMissed } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import axios from 'axios';
 import { useState } from "react";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const Card = ({ appointmentId, specialization, name, date, time, status }) => {
     const [availableSlots, setAvailableSlots] = useState([])
     const [currStatus, setCurrStatus] = useState(status)
@@ -23,8 +24,9 @@ const Card = ({ appointmentId, specialization, name, date, time, status }) => {
 
     // Handle Miss Appointment button click
     const handleMissAppointment = async () => {
+
         try {
-            const url = `http://localhost:5000/api/appointments/update/${appointmentId}`;
+            const url = `${API_BASE_URL} /api/appointments/update/${appointmentId}`;
             const payload = {
                 status: 'Missed',
             };

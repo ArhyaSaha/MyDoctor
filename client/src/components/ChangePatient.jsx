@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { PatientContext } from "../context/PatientContextProvider";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ChangePatient = () => {
     const { patientId, setPatientId, patients, setPatients, currentPatientName, setCurrentPatientName, patientDetails, setPatientDetails } = useContext(PatientContext)
@@ -10,7 +11,7 @@ const ChangePatient = () => {
     useEffect(() => {
         async function fetchPatients() {
             try {
-                const response = await axios.get("http://localhost:5000/api/patients/all");
+                const response = await axios.get(`${API_BASE_URL}/api/patients/all`);
                 setPatients(response.data);
             } catch (error) {
                 console.error("Error fetching patients:", error);

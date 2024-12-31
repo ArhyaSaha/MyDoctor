@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useState, useEffect } from 'react';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 export const PatientContext = createContext();
@@ -22,7 +23,7 @@ export const PatientContextProvider = ({ children }) => {
     useEffect(() => {
         async function fetchDoctors() {
             try {
-                const response = await axios.get('http://localhost:5000/api/doctors/all', {
+                const response = await axios.get(`${API_BASE_URL}/api/doctors/all`, {
                     params: {
                         specialty: specialty || undefined, // Only include specialty if it's not an empty string
                         startDate: startDate || undefined,

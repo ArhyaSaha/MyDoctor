@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { PatientContext } from '../context/PatientContextProvider';
 
 
+
 const BookingModal = ({ doctorId, name, specialty, availableSlots, onClose }) => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -42,7 +43,8 @@ const BookingModal = ({ doctorId, name, specialty, availableSlots, onClose }) =>
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:5000/api/appointments/add', {
+            const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+            const response = await fetch(`${API_BASE_URL}/api/appointments/add`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import axios from "axios";
 import Card from '../components/Card'
 import { PatientContext } from '../context/PatientContextProvider';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const MyAppointment = () => {
@@ -14,7 +15,7 @@ const MyAppointment = () => {
         async function fetchAppointments() {
             try {
                 console.log("Fetching appointments for patientId:", patientId);
-                const response = await axios.get(`http://localhost:5000/api/appointments/patient/${patientId}`);
+                const response = await axios.get(`${API_BASE_URL}/api/appointments/patient/${patientId}`);
                 console.log("API Response:", response.data);
                 setAppointments(response.data);
             } catch (error) {
